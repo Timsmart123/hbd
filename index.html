@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Mom ❤️</title>
+
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+
+    body {
+        background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+        color: #333;
+        text-align: center;
+        overflow-x: hidden;
+    }
+
+
+    header {
+        padding: 50px 20px;
+        color: palevioletred;
+    }
+
+
+    header h1 {
+        font-size: 3rem;
+        animation: fadeIn 2s ease-in-out;
+    }
+
+
+    header p {
+        margin-top: 10px;
+        font-size: 1.2rem;
+    }
+
+
+    @keyframes fadeIn {
+        from {opacity: 0; transform: translateY(-20px);}
+        to {opacity: 1; transform: translateY(0);}
+    }
+
+
+    .typing {
+        font-size: 1.5rem;
+        margin: 30px;
+        min-height: 40px;
+        color: #ff3b2e;
+    }
+    #hiddenMessage{
+        color: #ff3b2e;
+    }
+
+
+.slideshow {
+    width: 90%;
+    max-width: 400px;
+    aspect-ratio: 1 / 1;
+    margin: 20px auto;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.slideshow img {
+    width: 100%;
+    height: 100%;
+    display: none;
+    object-fit: cover; /* or cover */
+    background-color: #000;
+}
+
+.slideshow img.active {
+    display: block;
+}
+
+    button {
+        margin: 20px;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 25px;
+        background: #ff6f61;
+        color: pink;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+
+    button:hover {
+        background: #ff3b2e;
+        transform: scale(1.05);
+    }
+
+
+    .quote-box {
+        margin: 20px;
+        font-size: 1.2rem;
+        padding: 15px;
+        color: #ff3b2e;
+    }
+
+
+    footer {
+        margin-top: 40px;
+        padding: 20px;
+        color:#ff6f61;
+    }
+
+
+    /* Floating hearts */
+    .heart {
+        position: fixed;
+        bottom: -10px;
+        font-size: 20px;
+        animation: floatUp 5s linear infinite;
+    }
+
+
+    @keyframes floatUp {
+        0% {transform: translateY(0); opacity: 1;}
+        100% {transform: translateY(-800px); opacity: 0;}
+    }
+
+
+    @media(max-width: 600px){
+        header h1 {
+            font-size: 2rem;
+        }
+    }
+
+
+    /* Confetti */
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background-color: red;
+      top: -10px;
+      animation: fall linear forwards;
+    }
+
+
+    @keyframes fall {
+        to {
+            transform: translateY(100vh) rotate(360deg);
+            opacity: 0;
+        }
+    }
+</style>
+</head>
+
+
+<body>
+
+    <!-- Audio -->
+  <!-- <audio id="bgMusic" autoplay loop>
+    <source src="https://youtu.be/IiNZeHV0an4" type="video/mp4">
+  </audio> -->
+
+  <iframe
+    id="bgMusic"
+    width="0"
+    height="0"
+    src="https://www.youtube.com/embed/IiNZeHV0an4?autoplay=1&loop=1&playlist=IiNZeHV0an4"
+    frameborder="0"
+    allow="autoplay">
+    </iframe>
+
+
+  <header>
+      <h1> Happy Birthday Mom ❤️</h1>
+      <p>Wishing you long life, happiness, and endless prosperity</p>
+  </header>
+
+
+  <div class="typing" id="typingText"></div>
+  <button onclick="revealMessage()">Open Special Message 💌</button>
+
+
+  <div id="hiddenMessage" style="opacity:0; transition:1s; margin:20px; font-size:1.3rem;">
+      Mom, Thank you for keeping this family together,for your strength, and not given up on us. You have been a great guide, and my greatest blessing.
+  </div>
+  <div class="slideshow">
+      <!-- Replace these with your mom's pictures -->
+      <img src="WhatsApp Image 2026-04-27 at 20.26.30 (1).jpeg" class="active">
+      <img src="WhatsApp Image 2026-04-27 at 20.26.30.jpeg">
+      <img src="WhatsApp Image 2026-04-27 at 20.26.31 (1).jpeg">
+      <img src="WhatsApp Image 2026-04-27 at 20.26.31 (2).jpeg">
+      <img src="WhatsApp Image 2026-04-27 at 20.26.31 (3).jpeg">
+      <img src="WhatsApp Image 2026-04-27 at 20.26.31.jpeg">
+  </div>
+
+
+  <button onclick="newQuote()">Show Love 💖</button>
+
+
+  <div class="quote-box" id="quoteBox">
+      Click the button to see how amazing you are ❤️
+  </div>
+
+
+  <footer>
+      Love From All Members
+  </footer>
+
+
+<script>
+
+
+    // Audio
+    // document.body.addEventListener("click", () => {
+    //   const music = document.getElementById("bgMusic");
+    //   music.play();
+    // }, { once: true });
+
+    document.body.addEventListener("click", () => {
+        const iframe = document.getElementById("bgMusic");
+        iframe.src += "&mute=0";
+    }, { once: true });
+
+
+    function launchConfetti() {
+      for (let i = 0; i < 120; i++) {
+          const confetti = document.createElement("div");
+          confetti.classList.add("confetti");
+
+
+          confetti.style.left = Math.random() * 100 + "vw";
+          confetti.style.backgroundColor =
+              `hsl(${Math.random() * 360}, 100%, 50%)`;
+          confetti.style.animationDuration = (Math.random() * 3 + 2) + "s";
+
+
+          document.body.appendChild(confetti);
+
+
+          setTimeout(() => confetti.remove(), 5000);
+      }
+    }
+
+
+    window.onload = launchConfetti;
+
+    // revealMessage
+    function revealMessage() {
+      const msg = document.getElementById("hiddenMessage");
+      msg.style.opacity = "1";
+    }
+
+
+    // Typing effect
+    const text = `Mom, thank you for everything you've done for me.  
+      I may not say it enough, but I appreciate you more than words can explain.  
+      You are my strength, my comfort, and my biggest blessing. ❤️`;
+    let i = 0;
+
+
+    function typeWriter() {
+        if (i < text.length) {
+            document.getElementById("typingText").innerHTML += text.charAt(i);
+            i++;
+            setTimeout(typeWriter, 50);
+        }
+    }
+
+     typeWriter();
+
+
+    // Slideshow
+    let slides = document.querySelectorAll(".slideshow img");
+    let index = 0;
+
+    setInterval(() => {
+        slides[index].classList.remove("active");
+        index = (index + 1) % slides.length;
+        slides[index].classList.add("active");
+    }, 3000);
+
+
+    // Quotes
+    const quotes = [
+        "You are the heart of our family ❤️",
+        "Thank you for your endless love and sacrifices",
+        "You are not just a mom, you are a legend",
+        "Your strength inspires me every day",
+        "You make life beautiful just by being in it",
+        "A wonderful mother, wife, and daughter",
+        "Your love is my greatest treasure",
+        'Your prayers reflect your strength and love Thank you.',
+        "You deserve all the happiness in the world",
+        "You are deeply appreciated and endlessly loved"
+    ];
+
+
+    function newQuote() {
+        const random = Math.floor(Math.random() * quotes.length);
+        document.getElementById("quoteBox").innerText = quotes[random];
+    }
+
+
+    // Floating hearts
+    function createHeart() {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = Math.random() * 20 + 10 + "px";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 5000);
+    }
+
+    setInterval(createHeart, 300);
+   
+</script>
+
+
+</body>
+</html>
+
+
